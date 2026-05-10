@@ -1,0 +1,74 @@
+# ── Build artifacts ───────────────────────────────────────────────────────────
+build/
+build_strict/
+dist/
+out/
+
+# ── C++ / CMake ───────────────────────────────────────────────────────────────
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+compile_commands.json
+*.a
+*.so
+*.dylib
+*.dll
+*.o
+*.obj
+
+# ── Rust / Cargo ──────────────────────────────────────────────────────────────
+app/src-tauri/target/
+
+# ── Node / npm ────────────────────────────────────────────────────────────────
+node_modules/
+app/node_modules/
+*.tsbuildinfo
+
+# ── Python ────────────────────────────────────────────────────────────────────
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+.pytest_cache/
+.mypy_cache/
+
+# ── ML model weights (large binaries — download separately) ──────────────────
+*.onnx
+*.pt
+*.pth
+*.ckpt
+*.h5
+training/datasets/
+
+# ── macOS ─────────────────────────────────────────────────────────────────────
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# ── Editor / IDE ──────────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.clangd/
+.cache/
+
+# ── Claude Code (personal session data) ──────────────────────────────────────
+.claude/
+
+# ── Environment / secrets ────────────────────────────────────────────────────
+.env
+.env.*
+*.pem
+*.key
+secrets/
+
+# ── Test binaries ────────────────────────────────────────────────────────────
+/tmp/test_*
