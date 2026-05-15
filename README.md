@@ -1,6 +1,25 @@
 # RoomSync
 
-Real-time multi-laptop echo cancellation with end-to-end encryption. When multiple people in the same room are on the same call, their microphones pick up each other's speakers — RoomSync eliminates that cross-echo entirely using a local audio processing pipeline running on each device.
+> **Status: 🚧 In Active Development** — This is a research and learning build being actively implemented. The full end-to-end system is not yet production-ready; the sections below document the architecture and what is built so far.
+
+---
+
+## What's implemented today
+
+- **C++ audio pipeline** — AEC (512-tap NLMS), Noise Suppression (spectral subtraction + VAD-gated PSD), PLC (LPC synthesis), Source Separation (passthrough stub with Conv-TasNet hooks); pipeline orchestrator with FrameStats; 13 signal-level tests passing (ERLE 1.7 dB → 10.4 dB at steady state)
+- **Python coordinator** — mDNS peer discovery (Zeroconf), reference audio bus (far-end speaker → AEC input), Opus relay between peers
+- **Encryption modules** — Signal Protocol Double Ratchet session (AES-256-GCM per frame), MLS group key skeleton (RFC 9420)
+- **Tauri desktop app shell** — React + TypeScript UI, Rust bridge with Tauri IPC commands, pipeline lifecycle management, FrameStats polling
+- **NVIDIA Maxine GPU path** — compile-time opt-in with transparent CPU fallback
+- **Test scaffolding** — C++ and Python test suites wired into CMake
+
+## In progress / next milestones
+
+- End-to-end audio loop validation on real hardware
+- NLMS double-talk robustness tuning under simultaneous speech
+- ONNX model integration: LPCNet (PLC) and Conv-TasNet (separation)
+- Multi-peer relay reliability and MLS epoch rotation testing
+- Tauri UI metrics wired to live pipeline stats
 
 ---
 
